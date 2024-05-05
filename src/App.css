@@ -1,0 +1,47 @@
+.compnay-details{
+  display: flex;
+  justify-content: start;
+  border: 1px solid;
+}
+.compnay-details .logo img{
+  height: 120px;
+  width: 120px;
+}
+.compnay-details .title span{
+  display: block;
+}
+.view-job{
+      
+    text-align: center;
+    color: blueviolet;
+    z-index: 1;
+    cursor: pointer;
+   
+
+}
+
+.white-linear{
+    position: relative;
+    bottom: 29px;
+    width: 103%;
+    height: 30px;
+    text-align: center;
+    background-image: linear-gradient(to top, white, transparent);
+    z-index: 0;
+
+}
+
+.apply{
+      color: rgb(0, 0, 0);
+    font-weight: 600;
+    background-color: rgb(85, 239, 196);
+    width: 90%;
+    display: block;
+    margin: 0px auto;
+    padding: 10px;
+    text-align: center;
+    cursor: pointer;
+}
+.apply:hover{
+  background-color: rgb(75, 215, 174);
+}
