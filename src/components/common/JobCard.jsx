@@ -11,42 +11,38 @@ const Item = styled(Paper)(({ theme }) => ({
   boxShadow: "rgba(0, 0, 0, 0.1) 0px 3px 10px 3px",
 }));
 
-const JobCard = () => {
+const JobCard = ({ data }) => {
+    const applyForJob = () => {
+        window.open(data.jdLink)
+    }
   return (
     <>
       <Item>
-        <div className="posted-at">Posted 10 days ago</div>
         <div className="compnay-details">
           <div className="logo">
-            <img
-              alt="company-logo"
-              src="https://w7.pngwing.com/pngs/36/959/png-transparent-meta-logo-facebook-social-media-chat-message-communication-icon-thumbnail.png"
-            />
+            <img alt="company-logo" src={data.logoUrl} />
           </div>
           <div className="title">
-            <span>fampay</span>
-            <span>Backend Engineer</span>
-            <span>Banglore</span>
+            <span>{data.companyName}</span>
+            <span>{data.jobRole}</span>
+            <span>{data.location}</span>
           </div>
         </div>
-        <p className="estimated-salary">~18-35 LPA</p>
+        <p className="estimated-salary">
+          {data.minJdSalary} - {data.maxJdSalary}
+        </p>
         <h6>About Company:</h6>
         <div className="about-company">
           <b>About us</b>
-          <p>
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aliquid
-            aperiam distinctio quaerat ipsum dolor voluptate? Possimus ea vitae
-            odit autem facere dignissimos quidem, qui iure labore dolor ab ex
-            voluptates.
-          </p>
-                  <div className="view-job">View Job</div>
-                  <div className="white-linear"></div>
+          <p>{data.jobDetailsFromCompany}</p>
+          <div className="view-job">View Job</div>
+          <div className="white-linear"></div>
         </div>
         <div className="min-exp">
           <p>Minimum Experience</p>
-          <p>3 years</p>
+                  <p>{data.minExp} - {data.maxExp }</p>
         </div>
-        <div className="apply">Easy Apply</div>
+        <div className="apply" onClick={()=>applyForJob()}>Easy Apply</div>
       </Item>
     </>
   );
