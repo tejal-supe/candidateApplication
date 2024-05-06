@@ -1,7 +1,6 @@
-import { Box, Container, Grid, Paper, styled } from "@mui/material";
 import React from "react";
-import Modal from '@mui/material/Modal';
-
+import { Box, Paper, styled } from "@mui/material";
+import Modal from "@mui/material/Modal";
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
@@ -13,26 +12,25 @@ const Item = styled(Paper)(({ theme }) => ({
   boxShadow: "rgba(0, 0, 0, 0.1) 0px 3px 10px 3px",
 }));
 const style = {
-  position: 'absolute',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
   width: 400,
-  bgcolor: 'background.paper',
-  border: '2px solid #000',
+  bgcolor: "background.paper",
+  border: "2px solid #000",
   boxShadow: 24,
   p: 4,
 };
-
 
 const JobCard = ({ data }) => {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
-    const applyForJob = () => {
-        window.open(data.jdLink)
-    }
+  const applyForJob = () => {
+    window.open(data.jdLink);
+  };
   return (
     <>
       <Item>
@@ -46,21 +44,27 @@ const JobCard = ({ data }) => {
             <span className="location">{data.location}</span>
           </div>
         </div>
-        {/* <p className="estimated-salary">
-          Estimated Salary : {data.minJdSalary} - {data.maxJdSalary}
-        </p> */}
+        <p className="estimated-salary">
+          Estimated Salary : &#36; {data.minJdSalary || 0} - &#36;{" "}
+          {data.maxJdSalary} LPA
+        </p>
         <h6 className="heading">About Company:</h6>
         <div className="about-company">
-          <b>About us</b> 
+          <b>About us</b>
           <p on> {data.jobDetailsFromCompany}</p>
-          <div className="view-job" onClick={()=>handleOpen()}>View More</div>
-          {/* <div className="white-linear"></div> */}
+          <div className="view-job" onClick={() => handleOpen()}>
+            View More
+          </div>
         </div>
         <div className="min-exp">
-          <p>Minimum Experience</p>
-                  <p>{data.minExp || 0} - {data.maxExp || 0} </p>
+          <p className="minexptitle"> Minimum Experience</p>
+          <p className="minexppara">
+            {data.minExp ? data.minExp : "Not Specified"}{" "}
+          </p>
         </div>
-        <div className="apply" onClick={()=>applyForJob()}>Easy Apply</div>
+        <div className="apply" onClick={() => applyForJob()}>
+          Easy Apply
+        </div>
       </Item>
       <Modal
         open={open}
@@ -68,11 +72,8 @@ const JobCard = ({ data }) => {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-        <Box sx={style}>
-          {data.jobDetailsFromCompany}
-        </Box>
+        <Box sx={style}>{data.jobDetailsFromCompany}</Box>
       </Modal>
-
     </>
   );
 };

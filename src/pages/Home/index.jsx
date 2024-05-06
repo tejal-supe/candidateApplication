@@ -1,24 +1,19 @@
-import { Box, Container, Grid, Paper, styled } from "@mui/material";
-import React, { useEffect, useState, useRef } from "react";
-import FilterUi from "../../components/common/FilterUi";
-import JobCard from "../../components/common/JobCard";
-
-import { getJobDataService } from "../../service/jobService";
+import { Container, Grid } from "@mui/material";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import JobCard from "../../components/common/JobCard";
+import { getJobDataService } from "../../service/jobService";
 import { getData, selectFilteredJobs } from "../../store/filterSlice";
 import Filter from "../../components/common/Filter";
 
 const Home = () => {
-  const divRef = useRef();
   const [jobData, setJobData] = useState([]);
   const [page, setPage] = useState(0);
   const filteredJobs = useSelector(selectFilteredJobs);
-  const [loading, setLoading] = useState(true);
 
   const dispatach = useDispatch();
 
   const count = useSelector((state) => state.filterSlice);
-  console.log(filteredJobs, "counr");
 
   const getJobData = async () => {
     try {
@@ -39,7 +34,6 @@ const Home = () => {
         document.documentElement.scrollHeight;
       if (bottom) {
         setPage((prev) => prev + 10);
-        setLoading(true);
       }
     };
     window.addEventListener("scroll", handleScroll, {
@@ -47,7 +41,6 @@ const Home = () => {
     });
 
     return () => {
-      console.log("event removec");
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
@@ -56,12 +49,12 @@ const Home = () => {
     setJobData(filteredJobs);
   }, [filteredJobs]);
   return (
-    <div ref={divRef}>
+    <>
       <Filter />
-    
-      {loading ? (
+
+      {jobData.length > 0 ? (
         <>
-          <Container sx={{ flexGrow: 1}}className="container" >
+          <Container sx={{ flexGrow: 1 }} className="container">
             <Grid
               container
               spacing={{ xs: 2, md: 3 }}
@@ -76,9 +69,9 @@ const Home = () => {
           </Container>
         </>
       ) : (
-        <h2>Loading...</h2>
+        <h2>No Data Available at the moment</h2>
       )}
-    </div>
+    </>
   );
 };
 
