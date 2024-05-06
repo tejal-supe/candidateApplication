@@ -7,47 +7,33 @@ import { applyFilter } from '../../store/filterSlice';
 
 
 
-const FilterUi = ({ data, filterName }) => {
+const FilterUi = ({ data, filterName,fil,setFil,multi,placeholder }) => {
   const fixedOptions = data;
   const dispatach = useDispatch();
   const [value, setValue] = useState([]);
-  const [filters, setFilters] = useState({});
-  console.log(value, "value", filters);
-  useEffect(() => {
-    dispatach(applyFilter(filters))
-  }, [value])
-  
+ 
+  console.log(value);
   return (
     <div>
       <Autocomplete
-        multiple
+        multiple={multi?true:false}
         id="fixed-tags-demo"
         value={value}
         onChange={(event, newValue) => {
-          setValue([...newValue]);
-          setFilters({...filters,[filterName]:newValue})
+          console.log(newValue,'new ',value);
+          Array.isArray(newValue)?setValue([...newValue]):setValue(newValue)
+          setFil({...fil,[filterName]:newValue})
+          
         }}
         options={data}
-        getOptionLabel={(option) => option}
-        style={{ width: 500 }}
+        getOptionLabel={(option) => filterName=="minJdSalary"?option+" L":option}
+        style={{ width: 250 , marginTop:"10px"}}
         renderInput={(params) => (
-          <TextField {...params} label={filterName} placeholder={filterName} />
+          <TextField {...params} label={placeholder} placeholder={placeholder} />
         )}
       />
     </div>
   );
 };
-const top100Films = [
-  { title: "The Shawshank Redemption", year: 1994 },
-  { title: "The Godfather", year: 1972 },
-  { title: "The Godfather: Part II", year: 1974 },
-  { title: "The Dark Knight", year: 2008 },
-  { title: "12 Angry Men", year: 1957 },
-  { title: "Schindler's List", year: 1993 },
-  { title: "Pulp Fiction", year: 1994 },
-  {
-    title: "The Lord of the Rings: The Return of the King",
-    year: 2003,
-  },
-];
+
 export default FilterUi

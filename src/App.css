@@ -1,17 +1,65 @@
 .compnay-details{
   display: flex;
   justify-content: start;
-  border: 1px solid;
 }
 .compnay-details .logo img{
-  height: 120px;
-  width: 120px;
+  height: 50px;
+  width: 40px;
+  margin: 0 20px 0 0;
 }
 .compnay-details .title span{
   display: block;
 }
+.company-name{
+  margin: 0px 0px 4px;
+  line-height: 1.2;
+  color: rgb(139, 139, 139);
+  font-size: 13px;
+  font-weight: 600;
+
+}
+.job-role{
+  margin: 0px 0px 4px;
+  line-height: 1.2;
+  font-size: 15px;
+  color: black;
+  letter-spacing: 0.7px;
+  font-weight: 500;
+}
+.location{
+  margin: 0px 0px 4px;
+  line-height: 1.2;
+  color: black;
+  font-size: 13px;
+  font-weight: 400;
+}
+.heading{
+  margin: 6px 0 0 0;
+  color: black;
+  font-size: 18px;
+}
+.about-company b{
+  color: black;
+  font-weight: 700;
+}
+.about-company p{
+  margin-top:  0;
+     overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 5;
+            -webkit-user-select: none; /* Safari */
+            -ms-user-select: none; /* IE 10 and IE 11 */
+            user-select: none; /* Standard syntax */
+            /* number of lines to show */
+             line-height: 147%;
+            /* fallback */
+             max-height: 294%;
+            /* fallback */
+}
 .view-job{
-      
+
     text-align: center;
     color: blueviolet;
     z-index: 1;
@@ -44,4 +92,12 @@
 }
 .apply:hover{
   background-color: rgb(75, 215, 174);
+}
+.filters-div{
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+}
+.container{
+  margin-top: 10px;
 }
